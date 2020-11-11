@@ -133,6 +133,11 @@ function contactCheck(firstName,lastName){
     return isPresent;
 }
 
+function totalContacts(contactsCounter){
+    contactsCounter++;
+    return contactsCounter;
+}
+
 function findContactUsingName(firstName,lastName){
     if(contactCheck(firstName,lastName)){
     let contact = addressBook.find(contact=>contact.firstName==firstName && contact.lastName==lastName);
@@ -189,8 +194,10 @@ try {
    console.log(addressBook); 
    ediContact("Shubham","Bhawsar","email", "aplha.123@gmail.com");
    console.log(findContactUsingName("Shubham","Bhawsar"));
+   console.log("Total Contacts in address book: "+addressBook.reduce(totalContacts,0));
    deleteContact("Shubh","Bhawsa");
    console.log(addressBook);
+   console.log("Total Contacts in address book: "+addressBook.reduce(totalContacts,0));
 } catch (error) {
     console.log(error);
 }

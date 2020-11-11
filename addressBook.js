@@ -125,14 +125,62 @@ class contacts{
 }
 
 let addressBook = new Array(); 
+function addContacts(contact){
+    addressBook.push(contact);
+}
+function contactCheck(firstName,lastName){
+    let isPresent = addressBook.some(contact=>contact.firstName==firstName && contact.lastName==lastName);
+    return isPresent;
+}
+
+function findContactUsingName(firstName,lastName){
+    if(contactCheck(firstName,lastName)){
+    let contact = addressBook.find(contact=>contact.firstName==firstName && contact.lastName==lastName);
+    return contact;
+    }
+   
+
+}
+function ediContact(firstName,lastName,field, value){
+    let isPresent = contactCheck(firstName,lastName);
+    if(isPresent){
+       switch(field){
+            case "address":
+               findContactUsingName(firstName,lastName).address = value;   
+               break;     
+            case "city":
+               findContactUsingName(firstName,lastName).city = value;  
+               break;
+            case "state":
+               findContactUsingName(firstName,lastName).state = value; 
+               break;
+            case "zip":
+               findContactUsingName(firstName,lastName).zip = value;  
+               break;
+            case "phoneNo":
+               findContactUsingName(firstName,lastName).phoneNo = value;   
+               break;
+            case "email":
+               findContactUsingName(firstName,lastName).email = value;
+               break; 
+            default:
+                console.log("Invalid field"); 
+            }
+    }
+    else{
+        console.log("Contact is not present");
+    }
+}
 try {
    let contact1 = new contacts("Shubham","Bhawsar","whitestreet","bhopal","MadhyaPradesh","456321","91 9874563114","shubh@gmail.com");
    let contact2 = new contacts("Shubh","Bhawsa","whitestrt","bhopali","MadhyaPrad","456321","91 9874563114","shubham@gmail.com");
    let contact3 = new contacts("Hubham","Bhaar","witestreet","bhoal","Madhradesh","456321","91 9874563114","shubhbhawsar@gmail.com");
-   addressBook.push(contact1.toString());
-   addressBook.push(contact2.toString());
-   addressBook.push(contact3.toString());
-    console.log(addressBook); 
+   addContacts(contact1);
+   addContacts(contact2);
+   addContacts(contact3);
+   console.log(addressBook); 
+   ediContact("Shubham","Bhawsar","address", "aplha");
+   console.log(findContactUsingName("Shubham","Bhawsar"));
 } catch (error) {
     console.log(error);
 }

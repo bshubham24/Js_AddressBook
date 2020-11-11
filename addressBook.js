@@ -134,6 +134,12 @@ function addContacts(contact){
         addressBook.push(contact);
     }
 }
+
+function sortContactsBasedOnName(){
+    addressBook.sort((contact1, contact2) => (contact1.firstName).localeCompare(contact2.firstName));
+    console.log(addressBook); 
+}
+
 function contactCheck(firstName,lastName){
     let isPresent = addressBook.some(contact=>contact.firstName==firstName && contact.lastName==lastName);
     return isPresent;
@@ -255,15 +261,17 @@ try {
    let contact1 = new contacts("Shubham","Bhawsar","whitestreet","bhopal","MadhyaPradesh","456321","91 9874563114","shubh@gmail.com");
    let contact2 = new contacts("Shubh","Bhawsa","whitestrt","bhopali","MadhyaPrad","456321","91 9874563114","shubham@gmail.com");
    let contact3 = new contacts("Hubham","Bhaar","witestreet","bhoal","MadhyaPradeshi","456321","91 9874563114","shubhbhawsar@gmail.com");
-   let contact4 = new contacts("Shubha","Bhawsa","whitestreet","bhopal","MadhyaPrad","456321","91 9874563114","shubh@gmail.com");
+   let contact4 = new contacts("Aubham","Bhaar","witestreet","bhoal","MadhyaPradeshi","456321","91 9874563114","shubhbhawsar@gmail.com");
+   let contact5 = new contacts("Shubha","Bhawsa","whitestreet","bhopal","MadhyaPrad","456321","91 9874563114","shubh@gmail.com");
+   let contact6 = new contacts("Zubham","Bhaar","witestreet","bhoal","MadhyaPradeshi","456321","91 9874563114","shubhbhawsar@gmail.com");
    addContacts(contact1);
    addContacts(contact2);
    addContacts(contact3);
    addContacts(contact4);
+   addContacts(contact5);
+   addContacts(contact6);
    console.log(addressBook);
-   console.log("No of person present in bhopal: "+personCountByStateOrCity("city","bhopal"));
-   console.log("No of person present in MadhyaPradesh: "+personCountByStateOrCity("state","MadhyaPradesh"));
-   console.log("No of person present in bhopal: "+personCountByStateOrCity("cityi","bhopal"));
+   sortContactsBasedOnName();
 
 } catch (error) {
     console.log(error);

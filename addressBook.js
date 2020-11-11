@@ -138,9 +138,8 @@ function findContactUsingName(firstName,lastName){
     let contact = addressBook.find(contact=>contact.firstName==firstName && contact.lastName==lastName);
     return contact;
     }
-   
+   }
 
-}
 function ediContact(firstName,lastName,field, value){
     let isPresent = contactCheck(firstName,lastName);
     if(isPresent){
@@ -171,6 +170,15 @@ function ediContact(firstName,lastName,field, value){
         console.log("Contact is not present");
     }
 }
+
+function deleteContact(firstName,lastName){
+    if(contactCheck(firstName,lastName)){
+       addressBook = addressBook.filter(contact=>contact.firstName!=firstName && contact.lastName!=lastName);
+    }
+    else{
+        console.log("Contact is not present");
+    }
+}
 try {
    let contact1 = new contacts("Shubham","Bhawsar","whitestreet","bhopal","MadhyaPradesh","456321","91 9874563114","shubh@gmail.com");
    let contact2 = new contacts("Shubh","Bhawsa","whitestrt","bhopali","MadhyaPrad","456321","91 9874563114","shubham@gmail.com");
@@ -179,8 +187,10 @@ try {
    addContacts(contact2);
    addContacts(contact3);
    console.log(addressBook); 
-   ediContact("Shubham","Bhawsar","address", "aplha");
+   ediContact("Shubham","Bhawsar","email", "aplha.123@gmail.com");
    console.log(findContactUsingName("Shubham","Bhawsar"));
+   deleteContact("Shubh","Bhawsa");
+   console.log(addressBook);
 } catch (error) {
     console.log(error);
 }

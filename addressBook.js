@@ -126,7 +126,12 @@ class contacts{
 
 let addressBook = new Array(); 
 function addContacts(contact){
-    addressBook.push(contact);
+    if(contactCheck(contact.firstName,contact.lastName)){
+        console.log("Contact is already present in the address Book");
+    }
+    else{
+        addressBook.push(contact);
+    }
 }
 function contactCheck(firstName,lastName){
     let isPresent = addressBook.some(contact=>contact.firstName==firstName && contact.lastName==lastName);
@@ -191,6 +196,8 @@ try {
    addContacts(contact1);
    addContacts(contact2);
    addContacts(contact3);
+   console.log(addressBook);
+   addContacts(contact1);
    console.log(addressBook); 
    ediContact("Shubham","Bhawsar","email", "aplha.123@gmail.com");
    console.log(findContactUsingName("Shubham","Bhawsar"));

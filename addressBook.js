@@ -189,6 +189,29 @@ function viewContactsBasedOnCityOrState(field, value){
      }
 }
 
+function personCountByStateOrCity(field,value){
+        let countPerson = 0;
+        switch(field){
+            case "city":
+                for(contact of addressBook){
+                if(contact.city==value){
+                    countPerson++;
+                }
+                }
+                return countPerson;
+            case "state":
+                for(contact of addressBook){
+                    if(contact.state==value){
+                        countPerson++;
+                    }
+                    }
+                    return countPerson;
+            default:
+                console.log("Invalid field"); 
+                return "NA";
+    }
+}
+
 function ediContact(firstName,lastName,field, value){
     let isPresent = contactCheck(firstName,lastName);
     if(isPresent){
@@ -231,21 +254,17 @@ function deleteContact(firstName,lastName){
 try {
    let contact1 = new contacts("Shubham","Bhawsar","whitestreet","bhopal","MadhyaPradesh","456321","91 9874563114","shubh@gmail.com");
    let contact2 = new contacts("Shubh","Bhawsa","whitestrt","bhopali","MadhyaPrad","456321","91 9874563114","shubham@gmail.com");
-   let contact3 = new contacts("Hubham","Bhaar","witestreet","bhoal","MadhyaPradesh","456321","91 9874563114","shubhbhawsar@gmail.com");
+   let contact3 = new contacts("Hubham","Bhaar","witestreet","bhoal","MadhyaPradeshi","456321","91 9874563114","shubhbhawsar@gmail.com");
    let contact4 = new contacts("Shubha","Bhawsa","whitestreet","bhopal","MadhyaPrad","456321","91 9874563114","shubh@gmail.com");
    addContacts(contact1);
    addContacts(contact2);
    addContacts(contact3);
    addContacts(contact4);
    console.log(addressBook);
-   searchPersonInParticularStateOrCity("Shubh","Bhawsa","city","bhopali");
-   searchPersonInParticularStateOrCity("Shubha","Bhawsa","city","bhopali");
-   searchPersonInParticularStateOrCity("Shubha","Bhawsa","state","MadhyaPrad");
-   searchPersonInParticularStateOrCity("Shubhauuuu","Bhawsa","state","MadhyaPrad");
-   let personByCity = viewContactsBasedOnCityOrState("city","bhopal");
-   console.log(personByCity);
-   let personByState = viewContactsBasedOnCityOrState("state","MadhyaPrad");
-   console.log(personByState)
+   console.log("No of person present in bhopal: "+personCountByStateOrCity("city","bhopal"));
+   console.log("No of person present in MadhyaPradesh: "+personCountByStateOrCity("state","MadhyaPradesh"));
+   console.log("No of person present in bhopal: "+personCountByStateOrCity("cityi","bhopal"));
+
 } catch (error) {
     console.log(error);
 }

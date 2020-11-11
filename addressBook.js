@@ -135,9 +135,27 @@ function addContacts(contact){
     }
 }
 
-function sortContactsBasedOnName(){
-    addressBook.sort((contact1, contact2) => (contact1.firstName).localeCompare(contact2.firstName));
-    console.log(addressBook); 
+function sortContactsByNameOrCityOrStateOrzip(field){
+    switch(field){
+        case "name":
+           addressBook.sort((contact1, contact2) => (contact1.firstName).localeCompare(contact2.firstName));
+           console.log(addressBook); 
+        break;
+        case "city":
+            addressBook.sort((contact1, contact2) => (contact1.city).localeCompare(contact2.city));
+            console.log(addressBook); 
+            break;
+        case "state":
+            addressBook.sort((contact1, contact2) => (contact1.state).localeCompare(contact2.state));
+            console.log(addressBook); 
+            break;
+        case "zip":
+            addressBook.sort((contact1, contact2) => (contact1.zip).localeCompare(contact2.zip));
+            console.log(addressBook); 
+            break;
+        default:
+            console.log("Invalid field");
+    }
 }
 
 function contactCheck(firstName,lastName){
@@ -259,11 +277,11 @@ function deleteContact(firstName,lastName){
 }
 try {
    let contact1 = new contacts("Shubham","Bhawsar","whitestreet","bhopal","MadhyaPradesh","456321","91 9874563114","shubh@gmail.com");
-   let contact2 = new contacts("Shubh","Bhawsa","whitestrt","bhopali","MadhyaPrad","456321","91 9874563114","shubham@gmail.com");
-   let contact3 = new contacts("Hubham","Bhaar","witestreet","bhoal","MadhyaPradeshi","456321","91 9874563114","shubhbhawsar@gmail.com");
-   let contact4 = new contacts("Aubham","Bhaar","witestreet","bhoal","MadhyaPradeshi","456321","91 9874563114","shubhbhawsar@gmail.com");
-   let contact5 = new contacts("Shubha","Bhawsa","whitestreet","bhopal","MadhyaPrad","456321","91 9874563114","shubh@gmail.com");
-   let contact6 = new contacts("Zubham","Bhaar","witestreet","bhoal","MadhyaPradeshi","456321","91 9874563114","shubhbhawsar@gmail.com");
+   let contact2 = new contacts("Shubh","Bhawsa","whitestrt","ahopali","AMadhyaPrad","256321","91 9874563114","shubham@gmail.com");
+   let contact3 = new contacts("Hubham","Bhaar","witestreet","sbhoal","BMadhyaPradeshi","956321","91 9874563114","shubhbhawsar@gmail.com");
+   let contact4 = new contacts("Aubham","Bhaar","witestreet","kbhoal","ZMadhyaPradeshi","856321","91 9874563114","shubhbhawsar@gmail.com");
+   let contact5 = new contacts("Shubha","Bhawsa","whitestreet","ibhopal","KMadhyaPrad","156321","91 9874563114","shubh@gmail.com");
+   let contact6 = new contacts("Zubham","Bhaar","witestreet","ubhoal","SMadhyaPradeshi","556321","91 9874563114","shubhbhawsar@gmail.com");
    addContacts(contact1);
    addContacts(contact2);
    addContacts(contact3);
@@ -271,7 +289,11 @@ try {
    addContacts(contact5);
    addContacts(contact6);
    console.log(addressBook);
-   sortContactsBasedOnName();
+   sortContactsByNameOrCityOrStateOrzip("name");
+   sortContactsByNameOrCityOrStateOrzip("city");
+   sortContactsByNameOrCityOrStateOrzip("state");
+   sortContactsByNameOrCityOrStateOrzip("zip");
+   sortContactsByNameOrCityOrStateOrzip("email");
 
 } catch (error) {
     console.log(error);

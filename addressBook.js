@@ -125,6 +125,7 @@ class contacts{
 }
 
 let addressBook = new Array(); 
+
 function addContacts(contact){
     if(contactCheck(contact.firstName,contact.lastName)){
         console.log("Contact is already present in the address Book");
@@ -149,6 +150,17 @@ function findContactUsingName(firstName,lastName){
     return contact;
     }
    }
+
+function searchContactBasedOnCityOrState(field, value){
+     switch(field){
+        case "city":
+            return addressBook.filter(contact=> contact.city==value);
+        case "state":
+            return addressBook.filter(contact=> contact.state==value);
+        default:
+            console.log("Invalid field"); 
+     }
+}
 
 function ediContact(firstName,lastName,field, value){
     let isPresent = contactCheck(firstName,lastName);
@@ -197,14 +209,10 @@ try {
    addContacts(contact2);
    addContacts(contact3);
    console.log(addressBook);
-   addContacts(contact1);
-   console.log(addressBook); 
-   ediContact("Shubham","Bhawsar","email", "aplha.123@gmail.com");
-   console.log(findContactUsingName("Shubham","Bhawsar"));
-   console.log("Total Contacts in address book: "+addressBook.reduce(totalContacts,0));
-   deleteContact("Shubh","Bhawsa");
-   console.log(addressBook);
-   console.log("Total Contacts in address book: "+addressBook.reduce(totalContacts,0));
+   let personByCity = searchContactBasedOnCityOrState("city","bhopal");
+   console.log(personByCity);
+   let personByState = searchContactBasedOnCityOrState("state","MadhyaPrad");
+   console.log(personByState)
 } catch (error) {
     console.log(error);
 }

@@ -123,9 +123,16 @@ class contacts{
         ", city : "+ this.city + ", State : "+ this.state +", Zip : "+ this.zip+ ", Phone No : "+ this.phoneNo + ", Email : "+ this.email;
     }
 }
+
+let addressBook = new Array(); 
 try {
-    let contact = new contacts("Shubham","Bhawsar","whitestreet","bhopal","MadhyaPradesh","456321","91 9874563114","shubh@gmail.com");
-    console.log(contact); 
+   let contact1 = new contacts("Shubham","Bhawsar","whitestreet","bhopal","MadhyaPradesh","456321","91 9874563114","shubh@gmail.com");
+   let contact2 = new contacts("Shubh","Bhawsa","whitestrt","bhopali","MadhyaPrad","456321","91 9874563114","shubham@gmail.com");
+   let contact3 = new contacts("Hubham","Bhaar","witestreet","bhoal","Madhradesh","456321","91 9874563114","shubhbhawsar@gmail.com");
+   addressBook.push(contact1.toString());
+   addressBook.push(contact2.toString());
+   addressBook.push(contact3.toString());
+    console.log(addressBook); 
 } catch (error) {
     console.log(error);
 }

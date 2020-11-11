@@ -151,7 +151,34 @@ function findContactUsingName(firstName,lastName){
     }
    }
 
-function searchContactBasedOnCityOrState(field, value){
+function searchPersonInParticularStateOrCity(firstName,lastName,field,value){
+    if(contactCheck(firstName,lastName)){
+    switch(field){
+        case "city":
+            if(addressBook.some(contact=> contact.firstName==firstName &&contact.lastName==lastName && contact.city==value)){
+                console.log(firstName+" "+lastName+" is present in "+value);
+            }
+            else{
+                console.log(firstName+" "+lastName+" is not present in "+value)
+            }
+            break;
+        case "state":
+            if(addressBook.some(contact=> contact.firstName==firstName &&contact.lastName==lastName && contact.state==value)){
+                console.log(firstName+" "+lastName+" is present in "+value);
+            }
+            else{
+                console.log(firstName+" "+lastName+" is not present in "+value);
+            }
+            break;
+        default:
+            console.log("Invalid field"); 
+     }
+    }
+    else{
+        console.log("Person not present in address Book");
+    }
+}
+function viewContactsBasedOnCityOrState(field, value){
      switch(field){
         case "city":
             return addressBook.filter(contact=> contact.city==value);
@@ -204,14 +231,20 @@ function deleteContact(firstName,lastName){
 try {
    let contact1 = new contacts("Shubham","Bhawsar","whitestreet","bhopal","MadhyaPradesh","456321","91 9874563114","shubh@gmail.com");
    let contact2 = new contacts("Shubh","Bhawsa","whitestrt","bhopali","MadhyaPrad","456321","91 9874563114","shubham@gmail.com");
-   let contact3 = new contacts("Hubham","Bhaar","witestreet","bhoal","Madhradesh","456321","91 9874563114","shubhbhawsar@gmail.com");
+   let contact3 = new contacts("Hubham","Bhaar","witestreet","bhoal","MadhyaPradesh","456321","91 9874563114","shubhbhawsar@gmail.com");
+   let contact4 = new contacts("Shubha","Bhawsa","whitestreet","bhopal","MadhyaPrad","456321","91 9874563114","shubh@gmail.com");
    addContacts(contact1);
    addContacts(contact2);
    addContacts(contact3);
+   addContacts(contact4);
    console.log(addressBook);
-   let personByCity = searchContactBasedOnCityOrState("city","bhopal");
+   searchPersonInParticularStateOrCity("Shubh","Bhawsa","city","bhopali");
+   searchPersonInParticularStateOrCity("Shubha","Bhawsa","city","bhopali");
+   searchPersonInParticularStateOrCity("Shubha","Bhawsa","state","MadhyaPrad");
+   searchPersonInParticularStateOrCity("Shubhauuuu","Bhawsa","state","MadhyaPrad");
+   let personByCity = viewContactsBasedOnCityOrState("city","bhopal");
    console.log(personByCity);
-   let personByState = searchContactBasedOnCityOrState("state","MadhyaPrad");
+   let personByState = viewContactsBasedOnCityOrState("state","MadhyaPrad");
    console.log(personByState)
 } catch (error) {
     console.log(error);
